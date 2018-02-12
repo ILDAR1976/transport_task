@@ -1,6 +1,7 @@
 package edu.transport_task;
 
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,13 +20,14 @@ public class Application extends AbstractJavaFxApplicationSupport {
     @Qualifier("mainView")
     @Autowired
     private ConfigurationControllers.View view;
-
-   
+  
 	@Override
     public void start(Stage stage) throws Exception {
         stage.setTitle(windowTitle);
         stage.setScene(new Scene(view.getView()));
         stage.setResizable(true);
+		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
+
         stage.centerOnScreen();
         stage.show();
     }

@@ -9,6 +9,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -626,6 +627,7 @@ public class MainController {
 
 		stage.setScene(scene);
 		stage.setTitle("A informer window");
+		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
 		stage.show();
 		
 	}
