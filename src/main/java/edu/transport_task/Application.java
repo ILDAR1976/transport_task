@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SuppressWarnings("restriction")
-@Lazy
+
 @SpringBootApplication
 public class Application extends AbstractJavaFxApplicationSupport {
 
@@ -27,7 +27,6 @@ public class Application extends AbstractJavaFxApplicationSupport {
         stage.setScene(new Scene(view.getView()));
         stage.setResizable(true);
 		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
-
         stage.centerOnScreen();
         stage.show();
     }

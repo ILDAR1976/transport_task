@@ -35,7 +35,6 @@ import static javafx.stage.Modality.APPLICATION_MODAL;
 import javafx.stage.Window;
 import javafx.scene.paint.Color;
 
-import static org.mockito.Mockito.verify;
 import java.nio.file.attribute.PosixFilePermission;
 
 import javax.annotation.PostConstruct;
@@ -405,6 +404,30 @@ public class MainController {
 		vb.setMaxHeight(Control.USE_COMPUTED_SIZE);
 		vb.setPrefHeight(Control.USE_COMPUTED_SIZE);
 	}
+	
+	private void showDialog(Window owner, String message) {
+
+		Stage stage = new Stage();
+		stage.initOwner(owner);
+	
+		stage.initModality(APPLICATION_MODAL);
+		Label modalityLabel = new Label(message + System.lineSeparator());
+		modalityLabel.setAlignment(Pos.CENTER);
+		Button closeButton = new Button("  OK  ");
+		closeButton.setAlignment(Pos.CENTER);
+		closeButton.setOnAction(e -> stage.close());
+		VBox root = new VBox();
+		root.setAlignment(Pos.CENTER);
+		root.getChildren().addAll(modalityLabel, closeButton);
+		Scene scene = new Scene(root, 300, 100);
+		scene.setFill(Color.TRANSPARENT);
+
+		stage.setScene(scene);
+		stage.setTitle("A informer window");
+		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
+		stage.show();
+		
+	}
 
 	private class ChargesPlaneMarkUp {
 		private final int ANGEL_ROTATE_SUPPLIER_NAME = -90;
@@ -606,30 +629,6 @@ public class MainController {
 			return this.chargesPlaneService.getSuppliers().entrySet().stream().map(v -> v.getValue().length())
 					.max((v1, v2) -> v1.compareTo(v2)).get();
 		}
-	}
-
-	private void showDialog(Window owner, String message) {
-
-		Stage stage = new Stage();
-		stage.initOwner(owner);
-	
-		stage.initModality(APPLICATION_MODAL);
-		Label modalityLabel = new Label(message + System.lineSeparator());
-		modalityLabel.setAlignment(Pos.CENTER);
-		Button closeButton = new Button("  OK  ");
-		closeButton.setAlignment(Pos.CENTER);
-		closeButton.setOnAction(e -> stage.close());
-		VBox root = new VBox();
-		root.setAlignment(Pos.CENTER);
-		root.getChildren().addAll(modalityLabel, closeButton);
-		Scene scene = new Scene(root, 300, 100);
-		scene.setFill(Color.TRANSPARENT);
-
-		stage.setScene(scene);
-		stage.setTitle("A informer window");
-		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
-		stage.show();
-		
 	}
 
 }
