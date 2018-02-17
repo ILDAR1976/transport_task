@@ -4,11 +4,15 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javafx.embed.swing.JFXPanel;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -18,15 +22,12 @@ import org.springframework.test.annotation.DirtiesContext;
 @SpringBootTest(classes = Application.class)
 public class ApplicationTests {
 
+	@BeforeClass
+    public static void bootstrapJavaFx(){
+        new JFXPanel();
+    }
 
-
-	@Before
-	public void setUp() {
-		
-	}
-	
-    @Ignore
-    @Test
+	@Test
     public void testDrawChargesPlane() {
     	assertTrue(true);
     }
